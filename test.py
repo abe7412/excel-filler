@@ -42,12 +42,8 @@ po_expiry = st.text_input("PO Expiry Date")
 
 if uploaded_pdf:
     # OpenAI Key
-    secrets_path = 'secrets.json'  # Adjust path if necessary
-    with open(secrets_path) as f:
-        secrets = json.load(f)
-
-    openai_key = secrets['secrets']['API_KEYS']['OpenAI_Key']
-    openai.api_key = openai_key
+    apiKeys = st.secrets["API_Keys"]
+    openAiKey = apiKeys["openAI"]
 
     # Read the PDF and extract text
     doc = fitz.open(uploaded_pdf)
