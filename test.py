@@ -32,25 +32,30 @@ def fill_excel_form_custom(template_path, data, po_number, po_expiry):
 
     return wb
 
-# Streamlit UI
-st.title("Fill Excel Form with PDF Data")
-
-# Input fields for the user
-uploaded_pdf = st.file_uploader("Upload PDF", type="pdf")
-po_number = st.text_input("PO Number")
-po_expiry = st.text_input("PO Expiry Date")
-
-if uploaded_pdf:
-    # OpenAI Key
+# OpenAI Key
     apiKeys = st.secrets["API_Keys"]
     openAiKey = apiKeys["openAI"]
 
+
+# Streamlit UI
+st.title("Fill Excel Form with PDF Data")
+
+
+# Input fields for the user
+uploaded_pdf = st.file_uploader("Upload PDF", type="pdf")
+uploaded_excel = st.file_uploader('Upload Excel', type = ['.xlsx','.xls'])
+po_number = st.text_input("PO Number")
+po_expiry = st.text_input("PO Expiry Date")
+
+if uploaded_pdf and uploaded_excel:
     # Read the PDF and extract text
     doc = fitz.open(uploaded_pdf)
     raw_text = ''
     for i in range(doc.page_count):
         page = doc.load_page(i)
         raw_text += page.get_text()
+    
+
 
     prompt = '''given the following text, provide the following information in a dictionary format:
     1) Iqama Number
