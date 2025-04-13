@@ -33,9 +33,10 @@ def fill_excel_form_custom(template_path, data, po_number, po_expiry):
     return wb
 
 # OpenAI Key
-    apiKeys = st.secrets["API_Keys"]
-    openAiKey = apiKeys["openAI"]
-    openai.api_key = openAiKey
+apiKeys = st.secrets["API_Keys"]
+openAiKey = apiKeys["openAI"]
+openai.api_key = openAiKey
+
 
 
 # Streamlit UI
