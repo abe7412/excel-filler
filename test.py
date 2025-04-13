@@ -48,7 +48,7 @@ uploaded_excel = st.file_uploader('Upload Excel', type = ['.xlsx','.xls'])
 po_number = st.text_input("PO Number")
 po_expiry = st.text_input("PO Expiry Date")
 
-if uploaded_pdf and uploaded_excel:
+if uploaded_pdf and uploaded_excel and po_expiry and po_number:
     # Read the PDF and extract text
     stream = BytesIO(uploaded_pdf.read())
     doc = pymupdf.open(stream = stream)
@@ -82,6 +82,7 @@ if uploaded_pdf and uploaded_excel:
 
     summary = response.choices[0].message['content']
     summary = json.loads(summary)
+    st.write(summary)
 
     # Excel Template path
     stream_xl = BytesIO(uploaded_excel.read())
