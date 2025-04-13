@@ -1,7 +1,7 @@
 import streamlit as st
 import openai
 import json
-import fitz
+import pymupdf
 from openpyxl import load_workbook
 from openpyxl.utils import range_boundaries
 from io import BytesIO
@@ -49,7 +49,7 @@ po_expiry = st.text_input("PO Expiry Date")
 if uploaded_pdf and uploaded_excel:
     # Read the PDF and extract text
     stream = BytesIO(uploaded_pdf.read())
-    doc = fitz.open(stream)
+    doc = pymupdf.open(stream)
     raw_text = ''
     for i in range(doc.page_count):
         page = doc.load_page(i)
