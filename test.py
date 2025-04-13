@@ -40,7 +40,6 @@ def fill_excel_form_custom(template_path, data, po_number, po_expiry):
 # Streamlit UI
 st.title("Fill Excel Form with PDF Data")
 
-
 # Input fields for the user
 uploaded_pdf = st.file_uploader("Upload PDF", type="pdf")
 uploaded_excel = st.file_uploader('Upload Excel', type = ['.xlsx','.xls'])
@@ -49,7 +48,8 @@ po_expiry = st.text_input("PO Expiry Date")
 
 if uploaded_pdf and uploaded_excel:
     # Read the PDF and extract text
-    doc = fitz.open(uploaded_pdf)
+    stream = uploaded_pdf.read()
+    doc = fitz.open(stream, filetype='pdf')
     raw_text = ''
     for i in range(doc.page_count):
         page = doc.load_page(i)
