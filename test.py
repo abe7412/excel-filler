@@ -28,7 +28,7 @@ def fill_excel_form_custom(template_path, data, po_number, po_expiry):
     safe_write(ws, "AE41", po_expiry)                    # PO Expiry
     safe_write(ws, "A16", data["Translated Name in Arabic"])
     safe_write(ws, "V17", data["Nationality"])   
-    safe_write(ws, "S16", data["Nationality"])        # Arabic name (reversed)
+    safe_write(ws, "S16", data["Nationality in Arabic"])        # Arabic name (reversed)
 
     return wb
 
