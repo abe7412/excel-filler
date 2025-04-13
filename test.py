@@ -48,8 +48,8 @@ po_expiry = st.text_input("PO Expiry Date")
 
 if uploaded_pdf and uploaded_excel:
     # Read the PDF and extract text
-    stream = uploaded_pdf.read()
-    doc = fitz.open(stream, filetype='pdf')
+    stream = BytesIO(uploaded_pdf.read())
+    doc = fitz.open(stream)
     raw_text = ''
     for i in range(doc.page_count):
         page = doc.load_page(i)
@@ -82,7 +82,7 @@ if uploaded_pdf and uploaded_excel:
     summary = json.loads(summary)
 
     # Excel Template path
-    excel_template = 'template.xlsx'  # Adjust to your template path
+    excel_template = uploaded_excel.read()  # Adjust to your template path
     
     # Fill Excel form
     wb = fill_excel_form_custom(excel_template, summary, po_number, po_expiry)
