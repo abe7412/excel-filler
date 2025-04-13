@@ -1,5 +1,5 @@
 import streamlit as st
-import openai import OpenAI
+from openai import OpenAI
 import json
 import pymupdf
 from openpyxl import load_workbook
