@@ -20,15 +20,15 @@ def fill_excel_form_custom(template_path, data, po_number, po_expiry):
     wb = load_workbook(template_path)
     ws = wb.active
 
-    safe_write(ws, "E17", data["Name in English"])       # English name
-    safe_write(ws, "S16", data["Nationality"])           # Nationality
+    safe_write(ws, "E17", data["Name in English"])       # English name          # Nationality
     safe_write(ws, "AA16", data["Occupation in Arabic"])        # Arabic occupation
     safe_write(ws, "AD17", data["Occupation in English"])            # English occupation
     safe_write(ws, "A19", data["Iqama Number"])                 # Iqama number
     safe_write(ws, "G41", po_number)                     # PO Number
     safe_write(ws, "AE41", po_expiry)                    # PO Expiry
     safe_write(ws, "A16", data["Translated Name in Arabic"])
-    safe_write(ws, "V17", data["Nationality"])           # Arabic name (reversed)
+    safe_write(ws, "V17", data["Nationality"])   
+    safe_write(ws, "S16", data["Nationality"])        # Arabic name (reversed)
 
     return wb
 
@@ -67,7 +67,9 @@ if uploaded_pdf and uploaded_excel and po_expiry and po_number:
     5) Name in English
     6) Translated Name in Arabic
     7) Passport Expiry Date
-    8) Iqama Expiry date'''
+    8) Iqama Expiry date
+    9) Nationality in Arabic'''
+    
 
     prompt = prompt + raw_text
 
