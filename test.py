@@ -1,5 +1,5 @@
 import streamlit as st
-from openai import OpenAI
+import openai
 import json
 import pymupdf
 from openpyxl import load_workbook
@@ -35,7 +35,7 @@ def fill_excel_form_custom(template_path, data, po_number, po_expiry):
 # OpenAI Key
     apiKeys = st.secrets["API_Keys"]
     openAiKey = apiKeys["openAI"]
-    client = OpenAI(api_key=openAiKey)
+    openai.api_key = openAiKey
 
 
 # Streamlit UI
@@ -72,7 +72,7 @@ if uploaded_pdf and uploaded_excel:
 
     # Generate response from OpenAI
     messages = [{"role": "user", "content": prompt}]
-    response = client.ChatCompletion.create(
+    response = openai.ChatCompletion.create(
         model="gpt-4",
         messages=messages,
         max_tokens=500,
