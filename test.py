@@ -84,10 +84,10 @@ if uploaded_pdf and uploaded_excel:
     summary = json.loads(summary)
 
     # Excel Template path
-    excel_template = uploaded_excel.read()  # Adjust to your template path
+    stream_xl = BytesIO(uploaded_excel.read())
     
     # Fill Excel form
-    wb = fill_excel_form_custom(excel_template, summary, po_number, po_expiry)
+    wb = fill_excel_form_custom(stream_xl, summary, po_number, po_expiry)
 
     # Save to BytesIO for download
     output = BytesIO()
